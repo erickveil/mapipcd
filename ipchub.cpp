@@ -24,7 +24,7 @@ void IpcHub::start()
 
 void IpcHub::_initSetVarListener()
 {
-    _setVarListener.Name = "mapipc_set";
+    _setVarListener.Name = MapIpcConst::SET_NAME;
     _setVarListener.ParseCallback = [&] (QByteArray msg) {
         _cbProcessSetVar(msg);
     };
@@ -33,7 +33,7 @@ void IpcHub::_initSetVarListener()
 
 void IpcHub::_initGetVarListener()
 {
-    _getVarListener.Name = "mapipc_get";
+    _getVarListener.Name = MapIpcConst::GET_NAME;
     _getVarListener.AckCallback = [&] (QByteArray msg) {
         return _cbAckGetVar(msg);
     };

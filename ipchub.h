@@ -10,11 +10,14 @@
 
 #include <functional>
 
-#include "jsonquery.h"
+#include "constants.h"
 #include "locallisten.h"
 #include "staticlogger.h"
 
 #include <QByteArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
 #include <QMap>
 
 class IpcHub

@@ -25,4 +25,5 @@ HEADERS += \
     locallisten.h \
     ipchub.h \
     jsonquery.h \
-    staticlogger.h
+    staticlogger.h \
+    constants.h
