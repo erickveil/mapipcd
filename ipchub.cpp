@@ -1,3 +1,5 @@
+// Copyright 2021 Erick Veil
+
 #include "ipchub.h"
 
 IpcHub::IpcHub()
@@ -38,18 +40,42 @@ void IpcHub::_initGetVarListener()
     _getVarListener.init();
 }
 
+QJsonValue IpcHub::_getReqiredJsonValue(QJsonDocument doc, QString key)
+{
+    QJsonObject root = doc.object();
+    if (root.contains(key)) { return root.value(key); }
+    LOG_WARN("JSON Breaks protocol, missing required key '" + key + "': " +
+             doc.toJson());
+    return QJsonValue();
+}
+
 void IpcHub::_cbProcessSetVar(QByteArray msg)
 {
-    auto doc = QJsonDocument::fromBinaryData(msg);
-    bool isBadJson = doc.isNull();
+    auto doc = QJsonDocument::fromJson(msg);
+    bool isBadJson = doc.isNull() || !doc.isObject();
     if (isBadJson) {
         LOG_WARN("Malformed JSON: " + msg);
         return;
     }
+    QJsonValue jKey = _getReqiredJsonValue(doc, "key");
+    QJsonValue jVal = _getReqiredJsonValue(doc, "value");
+    bool isBreaksProtocol = jKey.isNull() || jVal.isNull();
+    if (isBreaksProtocol) { return; }
+    QString key = jKey.toString();
 
+    _valStore[key] = jVal;
 }
 
-QByteArray IpcHub::_cbAckGetVar(QByteArray msg)
+QByteArray IpcHub::_cbAckGetVar(QByteArray key)
 {
+    QJsonDocument doc;
+    QJsonObject root;
+    root["value"] = QJsonValue();
 
+    // return NULL value if requested key does not exist
+    if (!_valStore.contains(key)) { return doc.toJson(); }
+
+    // otherwise return QJsonValue that's saved
+    root["value"] = _valStore.value(key);
+    return doc.toJson();
 }

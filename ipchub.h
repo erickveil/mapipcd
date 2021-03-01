@@ -35,9 +35,11 @@ public:
 private:
     void _initSetVarListener();
     void _initGetVarListener();
+    QJsonValue _getReqiredJsonValue(QJsonDocument doc, QString key);
+
 
     void _cbProcessSetVar(QByteArray msg);
-    QByteArray _cbAckGetVar(QByteArray msg);
+    QByteArray _cbAckGetVar(QByteArray key);
 };
 
 #endif // IPCHUB_H

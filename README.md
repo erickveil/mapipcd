@@ -74,18 +74,18 @@ http://www.enderunix.org/docs/eng/daemon.php
 
 TODO:
 
-- Make mapipc class
-- Define set listener
-- Define get listener
+- Create getter and setter program to communicate with mapipcd
+- Test gettting and setting values
+- Make sure staticlogger outputs WARN to stderr 
 
-- Use local socket to create a command line listener
 - Create a basic daemon that greets the log with hello world on startup
 - Give the daemon a command that causes it to write a constant entry to the log
 - Give that command an argument that gets saved as a variable, which gets
   written to the log
 - Give the daemon a command that will read that saved value and spit it out to
   stdout
-- Add the map and key argument.
+
+- daemonize mapipcd
 
 COMMUNICATION:
 
