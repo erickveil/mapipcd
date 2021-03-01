@@ -2,7 +2,7 @@
  * jsonquery.cpp
  * Erick Veil
  * 2016-08-15
- * Copyright 2016 ComTech Communications
+ * Copyright 2016 Erick Veil
  *
  * Changelog:
  *

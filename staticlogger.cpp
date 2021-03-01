@@ -1,3 +1,5 @@
+// Copyright 2021 Erick Veil
+
 #include "staticlogger.h"
 
 

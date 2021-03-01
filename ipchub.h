@@ -1,3 +1,10 @@
+/**
+ * ipchub.h
+ * Erick Veil
+ * 2021-03-01
+ * Copyright 2021 Erick Veil
+ */
+
 #ifndef IPCHUB_H
 #define IPCHUB_H
 
