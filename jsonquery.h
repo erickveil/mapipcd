@@ -59,16 +59,6 @@ namespace jsonQuery {
 QJsonDocument loadJsonDoc(QByteArray source);
 
 /**
- * @brief validateDocIsObject
- *
- * @param doc
- * @throws if the root of the document is not a JSON object.
- */
-void validateDocIsObject(QJsonDocument doc);
-
-void validateJValueIsObject(QJsonValue val);
-
-/**
  * @brief getJsonObjectByKey
  *
  * Provide a string key, and get back a QJsonObject with built in validation.
@@ -252,55 +242,6 @@ bool isJsonObjectHasMember(QJsonObject obj, QString key);
  * @return
  */
 bool isJsonValueAnObject(QJsonValue object);
-
-/**
- * @brief validateIsKeyMemberOfJsonObject
- *
- * Throws qxException if obj does not contain the provided key.
- *
- * @param obj
- * @param key
- */
-void validateIsKeyMemberOfJsonObject(QJsonObject obj, QString key);
-
-/**
- * @brief validateJsonValueIsJsonObject
- *
- * Throws qxException if object is not a QJsonObject.
- *
- * @param object
- */
-void validateJsonValueIsJsonObject(QJsonValue object, QString key);
-
-/**
- * @brief validateIsJsonList
- *
- * Throws qxException if list is not a QJsonList
- *
- * @param list
- * @param key
- */
-void validateIsJsonList(QJsonValue json_list, QString key);
-
-/**
- * @brief validateJsonObject
- *
- * Throws qxException if obj is not actually a valid object.
- *
- * @param obj
- */
-void validateJsonObject(QJsonObject obj);
-
-/**
- * @brief validateFilePath
- *
- * Throws qxException if the provided path does not lead to an actual file.
- * Not exactly a JSON related method, but I have no other class for this sort
- * of method at this time.
- *
- * @param path
- */
-void validateFilePath(QString path);
 
 /**
  * @brief jsonObjectToString

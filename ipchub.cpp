@@ -42,6 +42,10 @@ void IpcHub::_cbProcessSetVar(QByteArray msg)
 {
     auto doc = QJsonDocument::fromBinaryData(msg);
     bool isBadJson = doc.isNull();
+    if (isBadJson) {
+        LOG_WARN("Malformed JSON: " + msg);
+        return;
+    }
 
 }
 

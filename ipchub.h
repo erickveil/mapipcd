@@ -5,6 +5,7 @@
 
 #include "jsonquery.h"
 #include "locallisten.h"
+#include "staticlogger.h"
 
 #include <QByteArray>
 #include <QMap>

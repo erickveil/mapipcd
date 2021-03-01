@@ -25,11 +25,11 @@
  * A simple logger that writes to stdout
  */
 
-#define LOG_DEBUG(a) (stnctl::StaticLogger::logDebug(__PRETTY_FUNCTION__, __LINE__, a))
-#define LOG_INFO(a) (stnctl::StaticLogger::logInfo(__PRETTY_FUNCTION__, __LINE__, a))
-#define LOG_WARN(a) (stnctl::StaticLogger::logWarn(__PRETTY_FUNCTION__, __LINE__, a))
-#define LOG_ERROR(a) (stnctl::StaticLogger::writeLog("ERROR", __PRETTY_FUNCTION__, __LINE__, a))
-#define LOG_HEADER(a) (stnctl::StaticLogger::writeLog("HEADER", __PRETTY_FUNCTION__, __LINE__, a))
+#define LOG_DEBUG(a) (StaticLogger::logDebug(__PRETTY_FUNCTION__, __LINE__, a))
+#define LOG_INFO(a) (StaticLogger::logInfo(__PRETTY_FUNCTION__, __LINE__, a))
+#define LOG_WARN(a) (StaticLogger::logWarn(__PRETTY_FUNCTION__, __LINE__, a))
+#define LOG_ERROR(a) (StaticLogger::writeLog("ERROR", __PRETTY_FUNCTION__, __LINE__, a))
+#define LOG_HEADER(a) (StaticLogger::writeLog("HEADER", __PRETTY_FUNCTION__, __LINE__, a))
 
 /**
  * @brief The StaticLogger class
