@@ -40,6 +40,8 @@ void IpcHub::_initGetVarListener()
 
 void IpcHub::_cbProcessSetVar(QByteArray msg)
 {
+    auto doc = QJsonDocument::fromBinaryData(msg);
+    bool isBadJson = doc.isNull();
 
 }
 
