@@ -3,6 +3,14 @@
  * Erick Veil
  * 2021-02-28
  * Copyright 2021 Erick Veil
+ *
+ * Changelog:
+ *
+ * 2021-03-01
+ * EV
+ * Changed the ack callback to return a QByteArray which is automatically
+ * sent back to the client.
+ *
  */
 #ifndef LOCALLISTEN_H
 #define LOCALLISTEN_H
@@ -53,7 +61,7 @@ public:
      * If defined, this function will be called whenever new data is recieved.
      * Otherwise the listener will ack back with an echo.
      */
-    std::function<void (QByteArray)> AckCallback;
+    std::function<QByteArray (QByteArray)> AckCallback;
 
     explicit LocalListen(QObject *parent = nullptr);
     ~LocalListen();
@@ -75,7 +83,7 @@ public:
      * Sets Attributes and calls its overloaded friend, `init()`.
      */
     void init(QString name, std::function<void (QByteArray)> parseCb,
-              std::function<void (QByteArray)> ackCb);
+              std::function<QByteArray (QByteArray)> ackCb);
 
     /**
      * @brief start

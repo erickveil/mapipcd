@@ -25,7 +25,7 @@ void LocalListen::init()
 }
 
 void LocalListen::init(QString name, std::function<void (QByteArray)> parseCb,
-                       std::function<void (QByteArray)> ackCb)
+                       std::function<QByteArray (QByteArray)> ackCb)
 {
     Name = name;
     ParseCallback = parseCb;
@@ -139,8 +139,13 @@ void LocalListen::_processReceivedBytes()
     _receivedDataBuffer = _connection->readAll();
     _connection->flush();
 
-    if (AckCallback) { AckCallback(_receivedDataBuffer); }
-    else {
+    if (AckCallback)
+    {
+        QByteArray ack = AckCallback(_receivedDataBuffer);
+        _connection->write(ack);
+    }
+    else
+    {
         _connection->write(_receivedDataBuffer);
     }
 
