@@ -21,7 +21,11 @@ void CommandLineOptions::init(QCoreApplication *a)
                                              "provide a key (-k) argument. "
                                              "Example: `mapipc get -k foo`. "
                                              "The -a argument is not used "
-                                             "and will be ignored."));
+                                             "and will be ignored. "
+                                             "If the value requested is not"
+                                             "set, nothing will be output "
+                                             "and the program will exit "
+                                             "quietly."));
     parser.addPositionalArgument("set",
                                  QCoreApplication::translate(
                                      "main", "Command to set a value. Must "
