@@ -31,8 +31,15 @@ void IpcClient::getValue(QString key)
 
 void IpcClient::_initSetClient()
 {
-    auto parseCb = [&] (QByteArray msg) { exit(EXIT_SUCCESS); };
+    auto parseCb = [&] (QByteArray msg) {
+        Q_UNUSED(msg);
+        exit(EXIT_SUCCESS);
+    };
+    auto errCb = [&] (QLocalSocket::LocalSocketError errnum, QString errStr) {
+        _errorCalback(errnum, errStr);
+    };
     _setClient.ParseResponse = parseCb;
+    _setClient.ErrorCallback = errCb;
     _setClient.Name = MapIpcConst::SET_NAME;
     _setClient.init();
 }
@@ -40,13 +47,18 @@ void IpcClient::_initSetClient()
 void IpcClient::_initGetClient()
 {
     auto parseCb = [&] (QByteArray msg) { _parseGetResponse(msg); };
+    auto errCb = [&] (QLocalSocket::LocalSocketError errnum, QString errStr) {
+        _errorCalback(errnum, errStr);
+    };
+    _getClient.ParseResponse = parseCb;
+    _getClient.ErrorCallback = errCb;
     _getClient.Name = MapIpcConst::GET_NAME;
     _getClient.init();
 }
 
 QByteArray IpcClient::_createGetMsg(QString key)
 {
-    return key;
+    return key.toLocal8Bit();
 }
 
 QByteArray IpcClient::_createSetMsg(QString key, QJsonValue value)
@@ -93,4 +105,14 @@ void IpcClient::_printGetResponse(QJsonValue val)
     output << val.toString();
     output.flush();
     exit(EXIT_SUCCESS);
+}
+
+void IpcClient::_errorCalback(QLocalSocket::LocalSocketError errnum,
+                              QString errStr)
+{
+    if (errnum == QLocalSocket::PeerClosedError) { return; }
+    QTextStream errorOut( stderr );
+    errorOut << "error: " << errStr;
+    errorOut.flush();
+    exit(EXIT_FAILURE);
 }

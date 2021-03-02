@@ -78,6 +78,11 @@ void LocalSocketClient::eventDisconnected()
 
 void LocalSocketClient::eventErrorOccurred(QLocalSocket::LocalSocketError errnum)
 {
+    if (ErrorCallback) {
+        ErrorCallback(errnum, _client.errorString());
+        return;
+    }
+
     // server is in charge of hang up after sending ack
     if (errnum == QLocalSocket::PeerClosedError) { return; }
 

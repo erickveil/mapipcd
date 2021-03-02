@@ -46,6 +46,14 @@ public:
      */
     std::function<void (QByteArray)> ParseResponse;
 
+    /**
+     * @brief ErrorCallback
+     * If defined, this will replace the default error response of simply
+     * printing the error to stderr.
+     */
+    std::function<void (QLocalSocket::LocalSocketError errnum,
+                        QString errorString)> ErrorCallback;
+
     explicit LocalSocketClient(QObject *parent = nullptr);
 
     /**

@@ -66,6 +66,7 @@ private:
     QByteArray _createSetMsg(QString key, QJsonValue value);
     void _parseGetResponse(QByteArray msg);
     void _printGetResponse(QJsonValue val);
+    void _errorCalback(QLocalSocket::LocalSocketError errnum, QString errStr);
 };
 
 #endif // IPCCLIENT_H
