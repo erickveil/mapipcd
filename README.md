@@ -74,9 +74,6 @@ http://www.enderunix.org/docs/eng/daemon.php
 
 TODO:
 
-- Test gettting and setting values
-- Make sure staticlogger outputs WARN to stderr 
-
 - Create a basic daemon that greets the log with hello world on startup
 - Give the daemon a command that causes it to write a constant entry to the log
 - Give that command an argument that gets saved as a variable, which gets
