@@ -7,6 +7,7 @@
 #ifndef IPCCLIENT_H
 #define IPCCLIENT_H
 
+#include "../constants.h"
 #include "localsocketclient.h"
 
 #include <QByteArray>
@@ -14,6 +15,7 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QString>
+#include <QTextStream>
 
 
 /**
@@ -31,14 +33,39 @@ class IpcClient
 public:
     IpcClient();
 
+    /**
+     * @brief init
+     * Should call this before using the object.
+     * Initializes clients with CBs and names.
+     */
     void init();
 
+    /**
+     * @brief setValue
+     * Sends a request to the daemon to set value at key.
+     * Exits quietly after successful completion.
+     * Will init the object if not done already.
+     * @param key
+     * @param value
+     */
     void setValue(QString key, QJsonValue value);
-    QJsonValue getValue(QString key);
+
+    /**
+     * @brief getValue
+     * Sends a request to the daemon for the value at key. This value is
+     * output to stdout before the program exits.
+     * Will init the object if not done already.
+     * @param key
+     */
+    void getValue(QString key);
 
 private:
     void _initSetClient();
     void _initGetClient();
+    QByteArray _createGetMsg(QString key);
+    QByteArray _createSetMsg(QString key, QJsonValue value);
+    void _parseGetResponse(QByteArray msg);
+    void _printGetResponse(QJsonValue val);
 };
 
 #endif // IPCCLIENT_H

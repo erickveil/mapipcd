@@ -74,7 +74,9 @@ http://www.enderunix.org/docs/eng/daemon.php
 
 TODO:
 
-- Define main for ipcd
+- Create error cb for client
+- Exit after reporting errors or any output
+
 - Create getter and setter program to communicate with mapipcd
 - Test gettting and setting values
 - Make sure staticlogger outputs WARN to stderr 

@@ -21,4 +21,5 @@ SOURCES += main.cpp \
 
 HEADERS += \
     ipcclient.h \
-    localsocketclient.h
+    localsocketclient.h \
+    ../constants.h
