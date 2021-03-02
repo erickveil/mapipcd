@@ -22,7 +22,7 @@ void CommandLineOptions::init(QCoreApplication *a)
                                              "Example: `mapipc get -k foo`. "
                                              "The -a argument is not used "
                                              "and will be ignored. "
-                                             "If the value requested is not"
+                                             "If the value requested is not "
                                              "set, nothing will be output "
                                              "and the program will exit "
                                              "quietly."));
@@ -32,7 +32,10 @@ void CommandLineOptions::init(QCoreApplication *a)
                                              "provide both a key (-k) and "
                                              "a value (-a) argument. "
                                              "Example: `mapipc set -a foo "
-                                             "-a bar`"));
+                                             "-a bar`. If the -a argument "
+                                             "is set to an empty string, "
+                                             "the key will be cleared from "
+                                             "the map."));
 
     QCommandLineOption setKeyOption(
                 QStringList() <<
@@ -47,10 +50,11 @@ void CommandLineOptions::init(QCoreApplication *a)
                 QStringList() <<
                 "a" <<
                 "value",
-                "Define the value that is to be saved. Requires the -k option",
-                "value to set. If omitted or provided with an empty string "
+                "Define the value that is to be saved. Requires the -k option. "
+                "If omitted or provided with an empty string "
                 "when issuing a `set` command, "
-                "the key's value will be cleared.");
+                "the key's value will be cleared.",
+                "value to be set");
     parser.addOption(setValOption);
 
     parser.process(*a);
