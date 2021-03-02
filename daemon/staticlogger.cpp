@@ -20,7 +20,10 @@ void StaticLogger::logInfo(const char *method, int line, QString msg)
 
 void StaticLogger::logWarn(const char *method, int line, QString msg)
 {
-    writeLog("WARN", method, line, msg);
+    msg = sanitize(msg);
+    QString record = createRecord("WARN", method, line, msg);
+    QTextStream errout( stderr );
+    errout << record;
 }
 
 void StaticLogger::writeLog(QString level, const char *method, int line,
