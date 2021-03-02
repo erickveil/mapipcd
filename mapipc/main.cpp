@@ -32,7 +32,11 @@ int main(int argc, char *argv[])
         client.getValue(ops.getKey());
     }
     else if (ops.getCommand() == CommandLineOptions::CMD_SET) {
-        client.setValue(ops.getKey(), ops.getValue());
+        QJsonValue value;
+        bool isClearValueCmd = ops.getValue() == "";
+        if (!isClearValueCmd) { value = ops.getValue(); }
+        // else the null value is the command for the map to clear the key.
+        client.setValue(ops.getKey(), value);
     }
 
     return a.exec();
