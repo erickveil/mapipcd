@@ -24,4 +24,4 @@ HEADERS += \
     locallisten.h \
     ipchub.h \
     staticlogger.h \
-    constants.h
+    ../constants.h
