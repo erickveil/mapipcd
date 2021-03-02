@@ -18,12 +18,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp \
     locallisten.cpp \
     ipchub.cpp \
-    jsonquery.cpp \
     staticlogger.cpp
 
 HEADERS += \
     locallisten.h \
     ipchub.h \
-    jsonquery.h \
     staticlogger.h \
     constants.h
