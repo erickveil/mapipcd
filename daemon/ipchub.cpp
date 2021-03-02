@@ -73,9 +73,13 @@ QByteArray IpcHub::_cbAckGetVar(QByteArray key)
     root["value"] = QJsonValue();
 
     // return NULL value if requested key does not exist
-    if (!_valStore.contains(key)) { return doc.toJson(); }
+    if (!_valStore.contains(key)) {
+        doc.setObject(root);
+        return doc.toJson();
+    }
 
     // otherwise return QJsonValue that's saved
     root["value"] = _valStore.value(key);
+    doc.setObject(root);
     return doc.toJson();
 }

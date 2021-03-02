@@ -74,7 +74,6 @@ http://www.enderunix.org/docs/eng/daemon.php
 
 TODO:
 
-- What if bad key is requested for get at daemon?
 - Make sure daemon clears out if null value sent.
 - Make sure client sends null value if empty string passed.
 
