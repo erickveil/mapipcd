@@ -56,7 +56,7 @@ void LocalSocketClient::init()
 void LocalSocketClient::init(QString name, std::function<void (QByteArray)> parseResponse)
 {
     Name = name;
-    ParseResponse = parseResponse;
+    ParseCallback = parseResponse;
     init();
 }
 
@@ -137,7 +137,7 @@ void LocalSocketClient::eventIODeviceChannelReadyRead(int channel)
 void LocalSocketClient::eventIODeviceReadChannelFinished()
 {
     _client.close();
-    if (ParseResponse) { ParseResponse(_responseBuffer); }
+    if (ParseCallback) { ParseCallback(_responseBuffer); }
 }
 
 void LocalSocketClient::eventIODeviceReadyRead()

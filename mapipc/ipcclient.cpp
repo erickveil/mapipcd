@@ -38,7 +38,7 @@ void IpcClient::_initSetClient()
     auto errCb = [&] (QLocalSocket::LocalSocketError errnum, QString errStr) {
         _errorCalback(errnum, errStr);
     };
-    _setClient.ParseResponse = parseCb;
+    _setClient.ParseCallback = parseCb;
     _setClient.ErrorCallback = errCb;
     _setClient.Name = MapIpcConst::SET_NAME;
     _setClient.init();
@@ -50,7 +50,7 @@ void IpcClient::_initGetClient()
     auto errCb = [&] (QLocalSocket::LocalSocketError errnum, QString errStr) {
         _errorCalback(errnum, errStr);
     };
-    _getClient.ParseResponse = parseCb;
+    _getClient.ParseCallback = parseCb;
     _getClient.ErrorCallback = errCb;
     _getClient.Name = MapIpcConst::GET_NAME;
     _getClient.init();

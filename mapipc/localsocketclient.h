@@ -2,6 +2,14 @@
  * Erick Veil
  * 2021-02-28
  * Copyright 2021 Erick Veil
+ *
+ * Changelog:
+ *
+ * 2021-03-02
+ * EV
+ * - Added an error callback that overrides the default behavior.
+ * - Changed the name of ParseResponse to ParseCallback.
+ *
  */
 #ifndef LOCALSOCKETCLIENT_H
 #define LOCALSOCKETCLIENT_H
@@ -44,7 +52,7 @@ public:
      * @brief ParseResponse
      * If defined, this will be run when the server sends back its response.
      */
-    std::function<void (QByteArray)> ParseResponse;
+    std::function<void (QByteArray)> ParseCallback;
 
     /**
      * @brief ErrorCallback
