@@ -65,7 +65,8 @@ QByteArray IpcClient::_createSetMsg(QString key, QJsonValue value)
 {
     QJsonDocument doc;
     QJsonObject obj;
-    obj[key] = value;
+    obj["key"] = key;
+    obj["value"] = value;
     doc.setObject(obj);
     return doc.toJson();
 }
