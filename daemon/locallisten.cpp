@@ -92,7 +92,7 @@ void LocalListen::eventErrorOccurred(QLocalSocket::LocalSocketError errnum)
 {
     Q_UNUSED(errnum);
     QTextStream errOut( stderr );
-    errOut << "error: " << _connection->errorString();
+    errOut << "error: " << _connection->errorString() << "\n";
     errOut.flush();
 }
 

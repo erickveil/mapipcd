@@ -74,8 +74,9 @@ http://www.enderunix.org/docs/eng/daemon.php
 
 TODO:
 
-- Create error cb for client
-- Exit after reporting errors or any output
+- What if bad key is requested for get at daemon?
+- Make sure daemon clears out if null value sent.
+- Make sure client sends null value if empty string passed.
 
 - Create getter and setter program to communicate with mapipcd
 - Test gettting and setting values

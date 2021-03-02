@@ -17,9 +17,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
     ipcclient.cpp \
-    localsocketclient.cpp
+    localsocketclient.cpp \
+    commandlineoptions.cpp
 
 HEADERS += \
     ipcclient.h \
     localsocketclient.h \
-    ../constants.h
+    ../constants.h \
+    commandlineoptions.h
