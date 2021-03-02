@@ -59,7 +59,7 @@ void IpcHub::_cbProcessSetVar(QByteArray msg)
     }
     QJsonValue jKey = _getReqiredJsonValue(doc, "key");
     QJsonValue jVal = _getReqiredJsonValue(doc, "value");
-    bool isBreaksProtocol = jKey.isNull() || jVal.isNull();
+    bool isBreaksProtocol = jKey.isNull();
     if (isBreaksProtocol) { return; }
     QString key = jKey.toString();
 
