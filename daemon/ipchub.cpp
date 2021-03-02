@@ -63,7 +63,9 @@ void IpcHub::_cbProcessSetVar(QByteArray msg)
     if (isBreaksProtocol) { return; }
     QString key = jKey.toString();
 
-    _valStore[key] = jVal;
+    bool isClearCmd = jVal.isNull();
+    if (isClearCmd) { _valStore.remove(key); }
+    else { _valStore[key] = jVal; }
 }
 
 QByteArray IpcHub::_cbAckGetVar(QByteArray key)

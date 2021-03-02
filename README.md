@@ -74,7 +74,6 @@ http://www.enderunix.org/docs/eng/daemon.php
 
 TODO:
 
-- Make sure daemon clears out if null value sent.
 - Make sure client sends null value if empty string passed.
 
 - Create getter and setter program to communicate with mapipcd
