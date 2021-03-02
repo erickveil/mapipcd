@@ -87,7 +87,7 @@ void LocalSocketClient::eventErrorOccurred(QLocalSocket::LocalSocketError errnum
     if (errnum == QLocalSocket::PeerClosedError) { return; }
 
     QTextStream errorOut( stderr );
-    errorOut << "error: " << _client.errorString();
+    errorOut << "error: " << _client.errorString() << "\n";
     errorOut.flush();
 }
 

@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     if (isNoKey) {
         QTextStream errout( stderr );
         errout << "Key (-k) argument must be provided for command. Run "
-                  "`mmapipc -h` for more help.";
+                  "`mmapipc -h` for more help.\n";
         errout.flush();
         exit(EXIT_FAILURE);
     }

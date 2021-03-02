@@ -57,7 +57,7 @@ void CommandLineOptions::init(QCoreApplication *a)
     QString instructions = "Use `mapipc get` or `mapipc set`. Run `mapipc -h` "
                            "for more help.";
     if (positionalArgs.count() > 1) {
-        errout << "Too many command arguments. " << instructions;
+        errout << "Too many command arguments. " << instructions << "\n";
         errout.flush();
         exit(EXIT_FAILURE);
     }
@@ -67,7 +67,7 @@ void CommandLineOptions::init(QCoreApplication *a)
         else {
             errout << "Unrecognized command arguemnt: " <<
                       positionalArgs[0] <<
-                      ". " << instructions;
+                      ". " << instructions << "\n";
             errout.flush();
             exit(EXIT_FAILURE);
         }

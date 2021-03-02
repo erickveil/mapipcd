@@ -75,20 +75,20 @@ void IpcClient::_parseGetResponse(QByteArray msg)
     QTextStream errorOut( stderr );
     auto doc = QJsonDocument::fromJson(msg);
     if (doc.isNull()) {
-        errorOut << "Response from daemon is malformed: " << msg;
+        errorOut << "Response from daemon is malformed: " << msg << "\n";
         errorOut.flush();
         exit(EXIT_FAILURE);
     }
     if (!doc.isObject()) {
         errorOut << "Response from daemon does not follow expected protocol: "
-                 << msg;
+                 << msg << "\n";
         errorOut.flush();
         exit(EXIT_FAILURE);
     }
     QJsonObject obj = doc.object();
     if (!obj.contains("value")) {
         errorOut << "Response from daemon does not contain value member: "
-                 << msg;
+                 << msg << "\n";
         errorOut.flush();
         exit(EXIT_FAILURE);
     }
@@ -112,7 +112,7 @@ void IpcClient::_errorCalback(QLocalSocket::LocalSocketError errnum,
 {
     if (errnum == QLocalSocket::PeerClosedError) { return; }
     QTextStream errorOut( stderr );
-    errorOut << "error: " << errStr;
+    errorOut << "error: " << errStr << "\n";
     errorOut.flush();
     exit(EXIT_FAILURE);
 }
