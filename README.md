@@ -4,6 +4,8 @@ Project start: 2021 Erick Veil
 
 Map IPC Daemon
 
+## Abstract
+
 A global variable manager with open accessibility between processes.
 
 In Linux, I want to share data between programs easily. I basically want it 
@@ -35,15 +37,29 @@ My solution is to write a daemon that holds the values in memory.
 One command will write to a map with a key/value pair.
 Another command will read from the map at the provided key.
 
+## Use
+
+For help, run `mapipcd -h`
+
+
 The ultimate goal is to have the following commands:
 
-sudo systemctl start globstashd
+```
+sudo systemctl start mapipcd
+```
+
 Starts the daemon
 
-globstash set [key] [value]
+```
+mapipcd set -k [key] -a [value]
+```
+
 Writes the value that can be retreived by key.
 
-globstsh get [key]
+```
+mapipck get -k [key]
+```
+
 Reads the value from key and delivers it to stdout.
 
 - All values are saved and output as C text strings.
@@ -53,37 +69,7 @@ Reads the value from key and delivers it to stdout.
 - All values will be lost if the daemon recieves a SIGTERM.
 - No configuration files are necessary.
 
-Some resources:
-
-Start here:
-man 7 daemon
-
-New Style Daemon Template:
-https://stackoverflow.com/a/59546558
-
-Parent article:
-https://stackoverflow.com/questions/17954432/creating-a-daemon-in-linux
-
-More New Style Daemon documentation:
-http://0pointer.de/public/systemd-man/daemon.html#New-Style%20Daemons
-
-https://stackoverflow.com/questions/5384168/how-to-make-a-process-daemon
-
-http://www.enderunix.org/docs/eng/daemon.php
-
-
-TODO:
-
-- Create a basic daemon that greets the log with hello world on startup
-- Give the daemon a command that causes it to write a constant entry to the log
-- Give that command an argument that gets saved as a variable, which gets
-  written to the log
-- Give the daemon a command that will read that saved value and spit it out to
-  stdout
-
-- daemonize mapipcd
-
-COMMUNICATION:
+## Local Socket Communication Protocol (Internals):
 
 The get and set each have their own socket, so there's no parsing of "which
 command is this? and we just make use of what's sent. Be lazy about

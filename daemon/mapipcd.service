@@ -1,0 +1,15 @@
+[Unit]
+Description=mapipcd - global variable map for inter process communication
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/mapipcd
+ExecReload=/bin/kill -HUP $MAINPID
+User=root
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=mapipcd
+
+[Install]
+WantedBy=multi-user.target

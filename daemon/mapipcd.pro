@@ -1,7 +1,7 @@
 QT -= gui
 QT += network
 
-CONFIG += c++11 console
+CONFIG += c++20 console
 CONFIG -= app_bundle
 
 # The following define makes your compiler emit warnings if you use
@@ -18,10 +18,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp \
     locallisten.cpp \
     ipchub.cpp \
-    staticlogger.cpp
+    staticlogger.cpp \
+    daemonizer.cpp
 
 HEADERS += \
     locallisten.h \
     ipchub.h \
     staticlogger.h \
-    ../constants.h
+    ../constants.h \
+    daemonizer.h
+
+DISTFILES += \
+    install.sh \
+    mapipcd.service \
+    ../README.md
