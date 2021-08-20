@@ -57,6 +57,18 @@ void CommandLineOptions::init(QCoreApplication *a)
                 "value to be set");
     parser.addOption(setValOption);
 
+    QCommandLineOption setPortOption(
+                QStringList() <<
+                "p" <<
+                "port",
+                "Define a specific port to write to. The default is the "
+                "one used by the mapipcd daemon. Only necessary to "
+                "provide this if you are going to use this to test some "
+                "custom program or daemon that works like ipcd.",
+                "value to be set"
+                );
+    parser.addOption(setPortOption);
+
     parser.process(*a);
 
     // set config values
@@ -83,6 +95,10 @@ void CommandLineOptions::init(QCoreApplication *a)
 
     _key = parser.value(setKeyOption);
     _value = parser.value(setValOption);
+    if (parser.isSet(setPortOption)) {
+        _altPort = parser.value(setPortOption);
+        _isUsingAltPort = true;
+    }
 }
 
 CommandLineOptions::CommandFunction CommandLineOptions::getCommand()
@@ -101,4 +117,14 @@ QString CommandLineOptions::getKey()
 QString CommandLineOptions::getValue()
 {
     return _value;
+}
+
+bool CommandLineOptions::isUsingAltPort()
+{
+    return _isUsingAltPort;
+}
+
+QString CommandLineOptions::getAltPortValue()
+{
+    return _altPort;
 }

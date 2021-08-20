@@ -25,6 +25,9 @@
  */
 class IpcClient
 {
+    QString _getPort = MapIpcConst::GET_NAME;
+    QString _setPort = MapIpcConst::SET_NAME;
+
     LocalSocketClient _setClient;
     LocalSocketClient _getClient;
 
@@ -58,6 +61,22 @@ public:
      * @param key
      */
     void getValue(QString key);
+
+    /**
+     * @brief setSetPort
+     * Must be called before init
+     * Otherwise constants.h define the default values.
+     * @param setPortName
+     */
+    void setSetPort(QString setPortName);
+
+    /**
+     * @brief setGetPort
+     * Must be called before init
+     * Otherwise constants.h define the default values.
+     * @param getPortName
+     */
+    void setGetPort(QString getPortName);
 
 private:
     void _initSetClient();

@@ -15,6 +15,10 @@ int main(int argc, char *argv[])
     ops.init(&a);
 
     IpcClient client;
+    if (ops.isUsingAltPort()) {
+        client.setGetPort(ops.getAltPortValue());
+        client.setSetPort(ops.getAltPortValue());
+    }
     client.init();
 
     bool isNoKey = (ops.getKey() == "") &&

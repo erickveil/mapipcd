@@ -29,6 +29,16 @@ void IpcClient::getValue(QString key)
     _getClient.send(msg);
 }
 
+void IpcClient::setSetPort(QString setPortName)
+{
+    _setPort = setPortName;
+}
+
+void IpcClient::setGetPort(QString getPortName)
+{
+    _getPort = getPortName;
+}
+
 void IpcClient::_initSetClient()
 {
     auto parseCb = [&] (QByteArray msg) {
@@ -40,7 +50,7 @@ void IpcClient::_initSetClient()
     };
     _setClient.ParseCallback = parseCb;
     _setClient.ErrorCallback = errCb;
-    _setClient.Name = MapIpcConst::SET_NAME;
+    _setClient.Name = _setPort;
     _setClient.init();
 }
 
@@ -52,7 +62,7 @@ void IpcClient::_initGetClient()
     };
     _getClient.ParseCallback = parseCb;
     _getClient.ErrorCallback = errCb;
-    _getClient.Name = MapIpcConst::GET_NAME;
+    _getClient.Name = _getPort;
     _getClient.init();
 }
 

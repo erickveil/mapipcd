@@ -23,8 +23,10 @@ class CommandLineOptions
 {
     bool _isGet = false;
     bool _isSet = false;
+    bool _isUsingAltPort = false;
     QString _key;
     QString _value;
+    QString _altPort;
 
 public:
     CommandLineOptions();
@@ -36,6 +38,9 @@ public:
     CommandFunction getCommand();
     QString getKey();
     QString getValue();
+
+    bool isUsingAltPort();
+    QString getAltPortValue();
 };
 
 #endif // COMMANDLINEOPTIONS_H
